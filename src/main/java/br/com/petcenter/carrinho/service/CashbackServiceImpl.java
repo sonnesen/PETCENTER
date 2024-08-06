@@ -13,7 +13,7 @@ public class CashbackServiceImpl implements CashbackService {
     private static final BigDecimal CASHBACK_BRONZE = BigDecimal.ZERO;
     private static final BigDecimal CASHBACK_PRATA = new BigDecimal("0.02");
     private static final BigDecimal CASHBACK_OURO = new BigDecimal("0.05");
-    private CashbackRepository repository;
+    private final CashbackRepository repository;
 
     public CashbackServiceImpl(CashbackRepository repository) {
         this.repository = repository;
