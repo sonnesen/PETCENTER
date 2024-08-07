@@ -1,6 +1,6 @@
 package br.com.petcenter.pedido.controller;
 
-import br.com.petcenter.pedido.model.dto.ProdutoDTO;
+import br.com.petcenter.pedido.model.dto.DescontoProdutoDTO;
 import br.com.petcenter.pedido.service.PromocaoEstoqueService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +18,7 @@ public class PromocaoEstoqueController {
     }
 
     @GetMapping("/promocaoPorEstoque")
-    public ResponseEntity<List<ProdutoDTO>> listProdutoPromocao() {
+    public ResponseEntity<List<DescontoProdutoDTO>> listProdutoPromocao() {
         return ResponseEntity.ok(promocaoEstoqueService.listProdutosPromocao());
     }
 

@@ -2,9 +2,10 @@ package br.com.petcenter.pedido.service;
 
 import br.com.petcenter.pedido.infraestructure.ProdutoRepository;
 import br.com.petcenter.pedido.model.Produto;
-import br.com.petcenter.pedido.model.dto.ProdutoDTO;
+import br.com.petcenter.pedido.model.dto.DescontoProdutoDTO;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,13 +19,17 @@ public class PromocaoEstoqueServiceImpl implements PromocaoEstoqueService {
     }
 
     @Override
-    public List<ProdutoDTO> listProdutosPromocao() {
+    public List<DescontoProdutoDTO> listProdutosPromocao() {
         List<Produto> findAll = produtoRepository.findAll();
-        List<ProdutoDTO> produtosPromocao = new ArrayList<>();
+        List<DescontoProdutoDTO> produtosPromocao = new ArrayList<>();
 
         for (Produto produto : findAll) {
             if (produto.getQuantidade() > 500) {
-                produtosPromocao.add(ProdutoDTO.getDTO().apply(produto));
+                DescontoProdutoDTO dto = DescontoProdutoDTO.getDTO().apply(produto);
+                dto.setPrecoComDesconto(produto.getPreco().subtract(produto.getPreco().multiply(new BigDecimal("0.2"))));
+                dto.setPrecoOriginal(produto.getPreco());
+
+                produtosPromocao.add(dto);
             }
         }
 
