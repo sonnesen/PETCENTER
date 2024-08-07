@@ -12,7 +12,7 @@ public class SwaggerConfig {
     public GroupedOpenApi apiV1() {
         return GroupedOpenApi.builder()
                 .group("v1")
-                .packagesToScan("br.com.petcenter.pedido.controller", "br.com.petcenter.carrinho.controller")
+                .packagesToScan("br.com.petcenter.pedido.controller", "br.com.petcenter.carrinho.controller", "br.com.petcenter.cupom.controller")
                 .pathsToMatch("/**")
                 .build();
     }
