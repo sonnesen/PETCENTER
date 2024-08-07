@@ -14,10 +14,10 @@ import java.math.BigDecimal;
 @RestController
 public class CupomController {
 	
-	private final CupomService cupomService;
+	private final CupomService cupomServiceImpl;
 	
 	public CupomController(CupomService cupomService) {
-		this.cupomService = cupomService;
+		this.cupomServiceImpl = cupomService;
 	}
 	
 	@SuppressWarnings("rawtypes")
@@ -32,7 +32,7 @@ public class CupomController {
 		
 		validaRequisicao(request);
 		
-		CupomDTO cupomDTO = cupomService.aplicarCupom(request);
+		CupomDTO cupomDTO = cupomServiceImpl.aplicarCupom(request);
 		
 		return cupomDTO.getCumpomValido() ? 
 				ResponseEntity.ok().body(cupomDTO) :
